@@ -3,25 +3,39 @@ using System.Data;
 using System.Data.SqlClient;
 using System;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.ComTypes;
 using Dapper;
 
 namespace Bookish
 {
-    class Program
+    class Buksh
     {
-        static IDbConnection db = new SqlConnection(ConfigurationManager.ConnectionStrings["BookishConnection"].ConnectionString);
-
+        private bool Running = true;
         static void Main(string[] args)
         {
+            var aBookish = new Buksh();
+            aBookish.Init();
+        }
 
-            string SqlString = "SELECT TOP 100 [UserId],[Name] FROM [User]";
-            var Users = (List<User>)db.Query<User>(SqlString);
-            foreach (var user in Users)
+        public void Init()
+        {
+            while (Running == true)
             {
-                Console.WriteLine(user.Name + " " + user.UserId);
+                Console.WriteLine();
+                Console.WriteLine("Welcome to Bookish..");
+                Console.WriteLine();
+                Console.WriteLine("Please Enter a command to continue..");
             }
+        }
 
-            Console.ReadLine();
+        public void Run(string command)
+        {
+            Console.WriteLine();
+
+            if (command.ToLower() == "get users" || command.ToLower() == "getusers" || command.ToLower() == "gu" || command.ToLower() == "g u")
+            {
+
+            }
 
         }
     }
