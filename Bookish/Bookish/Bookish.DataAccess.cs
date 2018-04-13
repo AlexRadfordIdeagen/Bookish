@@ -11,26 +11,26 @@ using Dapper;
 
 namespace Bookish
 {
-    class Bookish
+    class BookAccessish
     {
         private IDbConnection db = new SqlConnection(ConfigurationManager.ConnectionStrings["BookishConnection"].ConnectionString);
 
         public List<User> GetUsers()
         {
-            var SqlString = "SELECT * [UserId],[Name] FROM [User]";
+            var SqlString = "SELECT * FROM [User]";
             var users = (List<User>)db.Query<User>(SqlString);
             return users;
         }
         public List<Book> GetBooks()
         {
-            var SqlString = "SELECT * [TitleId],[Title],[Author],[NoOfBooks],[ISBN] FROM [Books]";
-            var books = (List<Book>)db.Query<User>(SqlString);
+            var SqlString = "SELECT * FROM [Book]";
+            var books = (List<Book>)db.Query<Book>(SqlString);
             return books;
         }
         public List<Checkout> GetCheckout()
         {
-            var SqlString = "SELECT * [UserId],[TitleId],[ChouckoutId] FROM [User]";
-            var checkouts = (List<Checkout>)db.Query<User>(SqlString);
+            var SqlString = "SELECT * FROM [Checkout]";
+            var checkouts = (List<Checkout>)db.Query<Checkout>(SqlString);
             return checkouts;
         }
 
