@@ -60,6 +60,7 @@ namespace Bookish
                     Console.WriteLine("Author : " + book.Author);
                     Console.WriteLine("NoOfBooks : " + book.NoOfBooks);
                     Console.WriteLine("ISBN : " + book.ISBN);
+                    Console.WriteLine("cover : " + book.cover);
                     Console.WriteLine(":::::::::::::::::::::::::");
                 }
                 Console.WriteLine();
