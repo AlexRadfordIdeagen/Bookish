@@ -11,7 +11,7 @@ using Dapper;
 
 namespace Bookish
 {
-    class BookAccessish
+    public class BookAccessish
     {
         private IDbConnection db = new SqlConnection(ConfigurationManager.ConnectionStrings["BookishConnection"].ConnectionString);
 

@@ -42,6 +42,7 @@ namespace Bookish
                 {
                     Console.WriteLine("UserId : " + user.UserId);
                     Console.WriteLine("Name : " + user.Name);
+                    Console.WriteLine("Email : " + user.Email);
                     Console.WriteLine(":::::::::::::::::::::::::");
                 }
                 Console.WriteLine();

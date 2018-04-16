@@ -1,0 +1,1 @@
+ALTER TABLE [BookishDB].[dbo].[User] ADD Email nchar(32) NOT NULL
