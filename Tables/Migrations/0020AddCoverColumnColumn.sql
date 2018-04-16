@@ -1,0 +1,1 @@
+ALTER TABLE [BookishDB].[dbo].[Book] ADD cover nchar(256)
