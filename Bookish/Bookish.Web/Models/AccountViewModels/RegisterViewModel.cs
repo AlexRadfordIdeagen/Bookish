@@ -9,11 +9,9 @@ namespace Bookish.Web.Models.AccountViewModels
     public class RegisterViewModel
     {
         [Required]
-        [EmailAddress]
         [Display(Name = "First Name")]
         public string FirstName { get; set; }
         [Required]
-        [EmailAddress]
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
         [Required]

@@ -227,7 +227,7 @@ namespace Bookish.Web.Controllers
                 {
 
                     BookAccessish dataAccess = new BookAccessish();
-
+                    dataAccess.CreateUser(user.Email, user.Id, model.FirstName + " " + model.LastName );
 
 
                     _logger.LogInformation("User created a new account with password.");

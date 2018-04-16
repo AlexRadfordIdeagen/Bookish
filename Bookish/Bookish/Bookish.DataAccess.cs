@@ -14,19 +14,43 @@ namespace Bookish
     public class BookAccessish
     {
         private IDbConnection db = new SqlConnection(ConfigurationManager.ConnectionStrings["BookishConnection"].ConnectionString);
-
+        //User Access
         public List<User> GetUsers()
         {
             var SqlString = "SELECT * FROM [User]";
             var users = (List<User>)db.Query<User>(SqlString);
             return users;
         }
+
+        public void CreateUser(string email, string id, string name)
+        {
+            System.Diagnostics.Debug.WriteLine("called create user");
+            var users = GetUsers();
+            foreach (var user in users)
+            {
+                if (user.Email.ToLower() == email.ToLower()) return;
+            }
+
+
+            const string insertQuery = @"INSERT INTO [User]([Email], [Name], [UserId]) VALUES (@Email, @Name, @UserId)";
+
+
+            db.Execute(insertQuery, new User
+            {
+                Email = email,
+                Name = name,
+                UserId = id
+            });
+        }
+
+        //Book Access
         public List<Book> GetBooks()
         {
             var SqlString = "SELECT * FROM [Book]";
             var books = (List<Book>)db.Query<Book>(SqlString);
             return books;
         }
+        //Checkout Access
         public List<Checkout> GetCheckout()
         {
             var SqlString = "SELECT * FROM [Checkout]";
