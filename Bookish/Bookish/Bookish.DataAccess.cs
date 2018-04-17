@@ -50,6 +50,13 @@ namespace Bookish
             var books = (List<Book>)db.Query<Book>(SqlString);
             return books;
         }
+
+        public Book GetBook(string ISBN)
+        {
+            var SqlString = "SELECT * FROM [Book] WHERE ISBN = '" + ISBN + "'";
+            var book = (Book)db.Query<Book>(SqlString).FirstOrDefault();
+            return book;
+        }
         //Checkout Access
         public List<Checkout> GetCheckout()
         {

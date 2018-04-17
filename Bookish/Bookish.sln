@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.27428.2015
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bookish", "Bookish\Bookish.csproj", "{A55D6E06-0FFD-48C2-B6A4-F3A764111FEB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bookish.Web", "Bookish.Web\Bookish.Web.csproj", "{055D0F20-12A2-42D6-B762-9670242C27DF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bookish.Web", "Bookish.Web\Bookish.Web.csproj", "{055D0F20-12A2-42D6-B762-9670242C27DF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,0 +1,23 @@
+﻿@using Bookish.Web.Models.BookViewModels;
+@model BookViewModel
+@{
+    ViewData["Title"] = @Model.Title;
+}
+
+<br />
+<div class="container">
+    <div class="bookcard">
+        <img src="@Model.cover" alt="@Model.Title" class="img-responsive" />
+        <div class="bookinfo">
+            <h3>@Model.Title</h3>
+            <ul>
+                <li>By <span>@Model.Author</span></li>
+                <li>ISBN: @Model.ISBN</li>
+               <li> No of copies available: @Model.NoOfBooks</li>
+            </ul>
+        </div>
+    </div>
+    <div class="loggedin">
+
+    </div>
+</div>
