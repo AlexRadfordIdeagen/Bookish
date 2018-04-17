@@ -1,20 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Bookish.Web.Models;
-using Bookish;
 using Bookish.Web.Models.BookViewModels;
-using Bookish.Web.Models.HomeViewModels;
-using Bookish.Web.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.Logging;
 
 namespace Bookish.Web.Controllers
 {
-
+    [Authorize]
     public class BookController : Controller
     {
         private readonly SignInManager<ApplicationUser> _signInManager;
@@ -30,6 +22,8 @@ namespace Bookish.Web.Controllers
         {
             var book = dAccessish.GetBook(isbn);
 
+            var availableAmount = book.NoOfBooks - dAccessish.GetNumberOfCheckedOut(book.TitleId);
+
             return View(new BookViewModel()
             {
                 TitleId = book.TitleId,
@@ -37,8 +31,8 @@ namespace Bookish.Web.Controllers
                 Author = book.Author,
                 Title = book.Title,
                 ISBN =  book.ISBN,
-                cover = book.cover
-
+                cover = book.cover,
+                Available = availableAmount
             });
         }
 

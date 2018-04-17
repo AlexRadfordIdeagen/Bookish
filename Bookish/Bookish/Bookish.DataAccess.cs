@@ -51,18 +51,28 @@ namespace Bookish
             return books;
         }
 
+       
         public Book GetBook(string ISBN)
         {
             var SqlString = "SELECT * FROM [Book] WHERE ISBN = '" + ISBN + "'";
             var book = (Book)db.Query<Book>(SqlString).FirstOrDefault();
             return book;
         }
+
         //Checkout Access
         public List<Checkout> GetCheckout()
         {
             var SqlString = "SELECT * FROM [Checkout]";
             var checkouts = (List<Checkout>)db.Query<Checkout>(SqlString);
             return checkouts;
+        }
+        public int GetNumberOfCheckedOut(string titleId)
+        {
+            
+            var SqlString = "SELECT COUNT(*) FROM [Checkout] WHERE TitleId = '" + titleId + "'";
+           int result = db.Query<int>(SqlString).FirstOrDefault();
+            
+            return result;
         }
 
     }

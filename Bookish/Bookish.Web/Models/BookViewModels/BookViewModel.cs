@@ -13,5 +13,7 @@ namespace Bookish.Web.Models.BookViewModels
         public string Title { get; set; }
         public string ISBN { get; set; }
         public string cover { get; set; }
+
+        public int Available { get; set; }
     }
 }

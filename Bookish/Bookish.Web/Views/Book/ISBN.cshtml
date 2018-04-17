@@ -6,18 +6,21 @@
 
 <br />
 <div class="container">
-    <div class="bookcard">
-        <img src="@Model.cover" alt="@Model.Title" class="img-responsive" />
-        <div class="bookinfo">
-            <h3>@Model.Title</h3>
-            <ul>
-                <li>By <span>@Model.Author</span></li>
-                <li>ISBN: @Model.ISBN</li>
-               <li> No of copies available: @Model.NoOfBooks</li>
+    
+    <div class="bookcard row">
+        <img src="@Model.cover" alt="@Model.Title" class="img-responsive col-4"/>
+        <div class="bookinfo col-4">
+            <h2>@Model.Title</h2>
+            <ul class="list-group">
+                <li class="list-group-item">By <span>@Model.Author</span></li>
+                <li class="list-group-item">ISBN: @Model.ISBN</li>
+                <li class="list-group-item">No of copies available:<span> @Model.Available</span> / <span> @Model.NoOfBooks</span> </li>
             </ul>
         </div>
+        <div></div>
     </div>
+        
     <div class="loggedin">
-
+       
     </div>
 </div>

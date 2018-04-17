@@ -9,11 +9,13 @@ using Bookish;
 using Bookish.Web.Models.BookViewModels;
 using Bookish.Web.Models.HomeViewModels;
 using Bookish.Web.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
 
 namespace Bookish.Web.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         private readonly SignInManager<ApplicationUser> _signInManager;

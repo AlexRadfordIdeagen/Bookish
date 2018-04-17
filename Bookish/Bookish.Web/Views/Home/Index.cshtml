@@ -1,5 +1,6 @@
 ﻿@using Bookish
 @using Bookish.Web.Models.HomeViewModels
+@using Microsoft.CodeAnalysis
 @model HomeBooksViewModel
 @{
     ViewData["Title"] = "Home Page";
@@ -70,22 +71,27 @@
     </a>
 </div>
 -->
+
+
+
+
+    
 <br />
 <div class="container">
     <div class="library">
         @foreach (var book in Model.Books)
-    {
-        <a asp-controller="Book" asp-action="ISBN" asp-route-isbn="@book.ISBN">
-            <div class="col-md-3 col-sm-2">
-                <div height="100">
-                    <img src="@book.cover" alt="@book.Title" class="img-responsive booknail" />
+        {
+            <a asp-controller="Book" asp-action="ISBN" asp-route-isbn="@book.ISBN">
+                <div class="col-md-3 col-sm-2">
+                    <div height="100">
+                        <img src="@book.cover" alt="@book.Title" class="img-responsive booknail" />
+                    </div>
+                    <ul>
+                        <li>@book.Title</li>
+                        <li>ISBN : @book.ISBN</li>
+                    </ul>
                 </div>
-                <ul>
-                    <li>@book.Title</li>
-                    <li>ISBN : @book.ISBN</li>
-                </ul>
-            </div>
-        </a>
-}
+            </a>
+        }
     </div>
 </div>

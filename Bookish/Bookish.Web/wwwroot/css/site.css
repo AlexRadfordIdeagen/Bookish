@@ -30,6 +30,16 @@
     max-height: 20em;
 }
 
+.bookcard > img {
+    float: left;
+    margin-right: 50px;
+}
+
+.bookinfo > .list-group {
+    display: inline-block;
+    font-size: large;
+}
+
 /* Hide/rearrange for smaller screens */
 @media screen and (max-width: 767px) {
     /* Hide captions */
