@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Bookish.Web.Models;
-using Bookish;
 using Bookish.Web.Models.BookViewModels;
 using Bookish.Web.Models.HomeViewModels;
-using Bookish.Web.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.Logging;
+using Bookish.Web.Models.AccountViewModels;
+using System;
+using System.Linq;
 
 namespace Bookish.Web.Controllers
 {
@@ -26,20 +22,35 @@ namespace Bookish.Web.Controllers
         {
             _signInManager = signInManager;
         }
-        public IActionResult Index()
+        public IActionResult Index(string searchString)
         {
+            var books = dAccessish.GetBooks();
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                books = books.Where(    
+                    book => {
+                        return book.Title.ToLower().Contains(searchString.ToLower())
+                        || book.Author.ToLower().Contains(searchString.ToLower());
+                    }).ToList();
+            }
+            books = books.OrderBy(book => book.Title).ToList();
             return View(new HomeBooksViewModel()
             {
-               Books = dAccessish.GetBooks(),
+                Books = books,
                 IsLoggedIn = _signInManager.IsSignedIn(User)
             });
         }
 
-        public IActionResult About()
+        public IActionResult YourAccount()
         {
-            ViewData["Message"] = "Your application description page.";
+            var checkouts = dAccessish.GetCheckout(
+                _signInManager.UserManager.GetUserId(User)
+            );
 
-            return View();
+            return View(new YourAccountViewModel()
+            {
+                Checkouts = checkouts,
+            });
         }
 
         public IActionResult Contact()

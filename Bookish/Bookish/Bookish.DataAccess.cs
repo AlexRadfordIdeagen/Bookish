@@ -66,6 +66,15 @@ namespace Bookish
             var checkouts = (List<Checkout>)db.Query<Checkout>(SqlString);
             return checkouts;
         }
+        public List<DetailedCheckout> GetCheckout(string userId)
+        {
+            var SqlString = "SELECT[Name], DueDate, Title FROM[BookishDB].[dbo].[Checkout] c" +
+                " join[Book] b on c.TitleId = b.TitleId join[User] u on c.UserId = u.UserId" +
+                $" where u.UserId = '{userId}'";
+            var checkouts = (List<DetailedCheckout>)db.Query<DetailedCheckout>(SqlString);
+            
+            return checkouts;
+        }
         public int GetNumberOfCheckedOut(string titleId)
         {
             

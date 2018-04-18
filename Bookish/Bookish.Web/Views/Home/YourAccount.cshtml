@@ -1,0 +1,12 @@
+﻿@model YourAccountViewModel
+@{
+    ViewData["Title"] = "Your Account";
+}
+<h2>@ViewData["Title"]</h2>
+<h3>@ViewData["Message"]</h3>
+
+<p>These are the books you have a checked out.</p>
+
+@foreach(var checkout in Model.Checkouts){
+    <div>@checkout.Title - @checkout.ReadableDueDate</div>
+}
