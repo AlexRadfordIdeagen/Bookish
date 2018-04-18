@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Identity;
 using Bookish.Web.Models.AccountViewModels;
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Bookish.Web.Controllers
 {
@@ -22,8 +23,17 @@ namespace Bookish.Web.Controllers
         {
             _signInManager = signInManager;
         }
-        public IActionResult Index(string searchString)
+        public IActionResult Index(string searchString, int? page, string currentFilter)
         {
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
             var books = dAccessish.GetBooks();
             if (!String.IsNullOrEmpty(searchString))
             {
@@ -34,11 +44,7 @@ namespace Bookish.Web.Controllers
                     }).ToList();
             }
             books = books.OrderBy(book => book.Title).ToList();
-            return View(new HomeBooksViewModel()
-            {
-                Books = books,
-                IsLoggedIn = _signInManager.IsSignedIn(User)
-            });
+            return View(HomeBooksViewModel.Create(books, page ?? 1, 3));
         }
 
         public IActionResult YourAccount()

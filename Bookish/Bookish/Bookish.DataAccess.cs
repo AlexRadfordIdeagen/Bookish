@@ -51,7 +51,23 @@ namespace Bookish
             return books;
         }
 
-       
+
+        public string GetFirstDueDate(string bookId)
+        {
+            var SqlString = "SELECT MIN (DueDate) FROM Checkout WHERE TitleId = '" + bookId + "'";
+            string date = db.Query<DateTime?>(SqlString).FirstOrDefault()?.ToShortDateString().ToString();
+            return date;
+        }
+
+        public string GetFirstUserReturningBook(string bookId)
+        {
+            var SqlString = "SELECT TOP 1 [Name] FROM [BookishDB].[dbo].[Checkout] c" +
+                " join[Book] b on c.TitleId = b.TitleId join[User] u on c.UserId = u.UserId" +
+                $" where c.TitleId ='{bookId}'";
+            string user = db.Query<string>(SqlString).FirstOrDefault();
+            return user;
+        }
+
         public Book GetBook(string ISBN)
         {
             var SqlString = "SELECT * FROM [Book] WHERE ISBN = '" + ISBN + "'";

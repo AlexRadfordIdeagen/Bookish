@@ -24,17 +24,22 @@ namespace Bookish.Web.Controllers
 
             var availableAmount = book.NoOfBooks - dAccessish.GetNumberOfCheckedOut(book.TitleId);
 
+            var dueDate = dAccessish.GetFirstDueDate(book.TitleId);
+
+            var returningUser = dAccessish.GetFirstUserReturningBook(book.TitleId);
+
             return View(new BookViewModel()
             {
                 TitleId = book.TitleId,
                 NoOfBooks = book.NoOfBooks,
                 Author = book.Author,
                 Title = book.Title,
-                ISBN =  book.ISBN,
+                ISBN = book.ISBN,
                 cover = book.cover,
-                Available = availableAmount
+                Available = availableAmount,
+                DueDate = dueDate,
+                ReturningUser = returningUser
             });
         }
-
     }
 }

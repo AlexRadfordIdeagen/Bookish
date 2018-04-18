@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace Bookish.Web.Models.BookViewModels
+﻿namespace Bookish.Web.Models.BookViewModels
 {
     public class BookViewModel
     {
@@ -13,7 +8,8 @@ namespace Bookish.Web.Models.BookViewModels
         public string Title { get; set; }
         public string ISBN { get; set; }
         public string cover { get; set; }
-
+        public string DueDate { get; set; }
+        public string ReturningUser { get; set; }
         public int Available { get; set; }
     }
 }
