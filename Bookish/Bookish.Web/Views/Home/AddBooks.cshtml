@@ -1,0 +1,33 @@
+﻿@model Bookish.Web.Models.BookViewModels.BookViewModel
+
+<html>
+<head>
+    <title>Customer Form</title>
+</head>
+<body>
+    @using (Html.BeginForm("AddNewBook", "Home", FormMethod.Post))
+    {
+        <div>
+            <span>@Html.LabelFor(m => m.NoOfBooks)</span>
+            <span>@Html.TextBoxFor(m => m.NoOfBooks, new { @type = "number", required = "required" })</span>
+        </div>
+        <div>
+            <span>@Html.LabelFor(m => m.Author)</span>
+            <span>@Html.TextBoxFor(m => m.Author, new { required = "required" })</span>
+        </div>
+        <div>
+            <span>@Html.LabelFor(m => m.Title)</span>
+            <span>@Html.TextBoxFor(m => m.Title, new { required = "required" })</span>
+        </div>
+        <div>
+            <span>@Html.LabelFor(m => m.ISBN)</span>
+            <span>@Html.TextBoxFor(m => m.ISBN, new { required = "required" })</span>
+        </div>
+        <div>
+            <span>@Html.LabelFor(m => m.cover)</span>
+            <span>@Html.TextBoxFor(m => m.cover, new { required = "required" })</span>
+        </div>
+        <input type="submit" value="Submit" />
+    }
+</body>
+</html>

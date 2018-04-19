@@ -1,0 +1,33 @@
+﻿@using Bookish.Web.Models.BookViewModels;
+@model BookViewModel
+@{
+    ViewData["Title"] = @Model.Title;
+}
+
+<br />
+<div class="container">
+    <h2>Success! You added this book</h2>
+    <br />
+
+    <div class="bookcard row">
+        <img src="@Model.cover" alt="@Model.Title" class="img-responsive col-4" />
+        <div class="bookinfo col-4">
+            <h2>@Model.Title</h2>
+            <ul class="list-group">
+                <li class="list-group-item">By <span>@Model.Author</span></li>
+                <li class="list-group-item">ISBN: @Model.ISBN</li>
+                <li class="list-group-item">No of copies:<span> @Model.NoOfBooks</span> </li>
+                @if (Model.Available == 0 && Model.ReturningUser != null)
+                {
+                    <li class="list-group-item"> Due Back <span> @Model.DueDate</span> from <span>@Model.ReturningUser</span></li>
+
+                }
+            </ul>
+        </div>
+        <div></div>
+    </div>
+
+    <div class="loggedin">
+
+    </div>
+</div>

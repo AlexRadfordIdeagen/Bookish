@@ -1,4 +1,6 @@
-﻿namespace Bookish.Web.Models.BookViewModels
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Bookish.Web.Models.BookViewModels
 {
     public class BookViewModel
     {

@@ -8,7 +8,6 @@ using Microsoft.AspNetCore.Identity;
 using Bookish.Web.Models.AccountViewModels;
 using System;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Bookish.Web.Controllers
 {
@@ -44,7 +43,7 @@ namespace Bookish.Web.Controllers
                     }).ToList();
             }
             books = books.OrderBy(book => book.Title).ToList();
-            return View(HomeBooksViewModel.Create(books, page ?? 1, 3));
+            return View(HomeBooksViewModel.Create(books, page ?? 1, 4));
         }
 
         public IActionResult YourAccount()
@@ -59,11 +58,35 @@ namespace Bookish.Web.Controllers
             });
         }
 
-        public IActionResult Contact()
+        public IActionResult AddBooks()
         {
-            ViewData["Message"] = "Your contact page.";
-
             return View();
+        }
+
+        public IActionResult AddNewBook(BookViewModel newBookData)
+        {
+            var bookToAdd = new Book
+            {
+                TitleId = newBookData.TitleId,
+                NoOfBooks = newBookData.NoOfBooks,
+                Author = newBookData.Author,
+                Title = newBookData.Title,
+                ISBN = newBookData.ISBN,
+                cover = newBookData.cover
+
+            };
+            dAccessish.AddBook(bookToAdd);
+            return View(new BookViewModel()
+            {
+
+                TitleId = newBookData.TitleId,
+                NoOfBooks = newBookData.NoOfBooks,
+                Author = newBookData.Author,
+                Title = newBookData.Title,
+                ISBN = newBookData.ISBN,
+                cover = newBookData.cover
+
+            } );
         }
 
         public IActionResult Error()

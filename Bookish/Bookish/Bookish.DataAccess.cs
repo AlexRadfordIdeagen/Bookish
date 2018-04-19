@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
@@ -31,9 +29,7 @@ namespace Bookish
                 if (user.Email.ToLower() == email.ToLower()) return;
             }
 
-
             const string insertQuery = @"INSERT INTO [User]([Email], [Name], [UserId]) VALUES (@Email, @Name, @UserId)";
-
 
             db.Execute(insertQuery, new User
             {
@@ -75,6 +71,13 @@ namespace Bookish
             return book;
         }
 
+        public void AddBook(Book book)
+        {
+            var InsertSqlString = "INSERT INTO [Book] (NoOfBooks, Author, Title, ISBN, cover) " +
+                $"VALUES ('{book.NoOfBooks}', '{book.Author}', '{book.Title}', '{book.ISBN}', '{book.cover}')";
+            db.Query(InsertSqlString);
+
+        }
         //Checkout Access
         public List<Checkout> GetCheckout()
         {
@@ -88,15 +91,15 @@ namespace Bookish
                 " join[Book] b on c.TitleId = b.TitleId join[User] u on c.UserId = u.UserId" +
                 $" where u.UserId = '{userId}'";
             var checkouts = (List<DetailedCheckout>)db.Query<DetailedCheckout>(SqlString);
-            
+
             return checkouts;
         }
         public int GetNumberOfCheckedOut(string titleId)
         {
-            
+
             var SqlString = "SELECT COUNT(*) FROM [Checkout] WHERE TitleId = '" + titleId + "'";
-           int result = db.Query<int>(SqlString).FirstOrDefault();
-            
+            int result = db.Query<int>(SqlString).FirstOrDefault();
+
             return result;
         }
 
